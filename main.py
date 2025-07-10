@@ -19,7 +19,31 @@ def check_prime(n):
 def factorial(n):
      if n < 0:
         return "Not a factorial"
-     result = 1
-     for i in range(2, n + 1):
-          result *= i
-    return result
+    return prod(range(1, n + 1))
+
+def calculate():
+     try:
+        number = int(entry.get())
+        prime_result = "Yes" if check_prime(number) else "No"
+        factorial_result = factorial(number)
+        result_label.config(
+            text=f"Is Prime? {prime_result}\nFactorial: {factorial_result}"
+        )
+    except ValueError:
+        messagebox.showerror("Input error: Please enter a valid input.")
+
+root = tk.Tk()
+root.title("Prime and Factorial Checker")
+root.geometry("400x400")
+
+tk.Label(root, text="Enter a number: ").pack(pady=5)
+
+entry = tk.Entry(root)
+entry.pack(pady=5)
+
+tk.Button(root, text="Confirm", command=calculate).pack(pady=10)
+
+result_label = tk.Label(root, text="", font=("Arial", 12))
+result_label.pack(pady=5)
+
+root.mainloop()

@@ -1,5 +1,4 @@
 import tkinter as tk
-from ttkbootstrap.constants import * 
 from tkinter import messagebox
 from math import isqrt, prod
 
@@ -28,8 +27,7 @@ def calculate():
         prime_result = "Yes" if check_prime(number) else "No"
         factorial_result = factorial(number)
         result_label.config(
-            text=f"Is the number prime? {prime_result}\n\nFactorial: {factorial_result}",
-            fg="white", bg="#320A6B"
+            text=f"Is the number prime? {prime_result}\n\nFactorial: {factorial_result}"
         )
     except ValueError:
         messagebox.showerror("Input error!", "Please enter a valid integer.")
@@ -39,17 +37,31 @@ root.title("Prime and Factorial Checker")
 root.geometry("425x350")
 root.configure(bg="#78B9B5")
 
-tk.Label(root, text="Enter a number: ", font=("Helvetica", 14, "bold"), bg="#78B9B5", fg="black").pack(pady=15)
+tk.Label(root, text="Enter a number: ", font=("Helvetica", 14, "bold"), 
+         bg="#78B9B5", fg="black").pack(pady=15)
 
 input_frame = tk.Frame(root, bg="#78B9B5")
 input_frame.pack(pady=5)
 
-entry = tk.Entry(input_frame, font=("Consolas", 14), width=20, justify="center")
-entry.pack()
+entry = tk.Entry(input_frame, font=("Consolas", 14), width=22,
+                  justify="center", bg="white", fg="black", relief="solid")
+entry.pack(pady=5)
 
-tk.Button(input_frame, text="Confirm", bg="#0F828C", fg="black", font=("Helvetica", 12, "bold"), activebackground="#065084", activeforeground="white", relief="flat", command=calculate, padx=15, pady=6, width=20).pack(pady=15)
+btn = tk.Button(input_frame, text="Confirm", bg="#0F828C", fg="black", 
+          font=("Helvetica", 12, "bold"), activebackground="#0F828C", 
+          activeforeground="white", relief="groove", borderwidth=2, command=calculate, 
+          padx=15, pady=6, width=22, height=1)
 
-result_label = tk.Label(root, text="", font=("Arial", 13), bg="#78B9B5", fg="white", justify="center")
-result_label.pack(pady=10, padx=20, fill="x")
+btn.pack(pady=10)
+
+result_frame = tk.Frame(root, bg="#320A6B", bd=5, relief="flat")
+result_frame.pack(pady=20, padx=20, fill="both", expand=True)
+
+scrollbar = tk.Scrollbar(result_frame)
+scrollbar.pack(side="right", fill="y")
+
+result_label = tk.Label(root, text="", font=("Arial", 13), 
+                        bg="#320A6B", fg="white", justify="center", wraplength=400)
+result_label.pack(expand=True, pady=15, padx=15)
 
 root.mainloop()

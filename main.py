@@ -17,12 +17,12 @@ def check_prime(n):
 
 # This function checks if the number is a factorial
 def factorial(n):
-     if n < 0:
+    if n < 0:
         return "Not a factorial"
     return prod(range(1, n + 1))
 
 def calculate():
-     try:
+    try:
         number = int(entry.get())
         prime_result = "Yes" if check_prime(number) else "No"
         factorial_result = factorial(number)
